@@ -1,217 +1,141 @@
-// ============================================================
-// SEKCJA A — ŁATWE: NAPISZ KOD
-// ============================================================
+// Ćwiczenia — zmienne i zasięgi
+// Poziom: łatwy / językowy — proste wywołania i mechaniki, bez algorytmów.
 
-// --- JS-003/004: let i const ---
+// --- JS-001 — var ---
 
-// ZADANIE 1
-// Napisz stałą ze swoim imieniem i zmienną z wiekiem.
-// Wypisz zdanie: "Nazywam się [imię] i mam [wiek] lat."
+// 1. Napisz zmienną var liczbaKotow = 2. Zadeklaruj ją ponownie przez var
+//    z wartością 5 (redeklaracja). Wypisz liczbaKotow.
 
+// 2. Napisz funkcję sprawdzStatus() z blokiem if (true) { var status = "aktywny"; }
+//    wewnątrz. Wypisz status POZA blokiem if, ale wewnątrz funkcji —
+//    sprawdź, że var "wycieka" z bloku.
 
-// ZADANIE 2
-// Napisz stałą CONFIG zawierającą obiekt { host: "localhost", port: 3000 }.
-// Zmień port na 8080 (nie przepisując stałej).
-// Wypisz cały obiekt.
+// 3. Napisz pętlę for (var i = 0; i < 3; i++) { ... } wewnątrz funkcji liczPetle().
+//    Po pętli wypisz i wewnątrz tej samej funkcji.
 
+// 4. Napisz funkcję zmienStan() z var stan = "start" na górze.
+//    Wewnątrz pętli for zmień stan na "koniec" (bez deklarowania nowej zmiennej).
+//    Wypisz stan po pętli.
 
-// ZADANIE 3
-// Napisz stałą COLORS jako tablicę kolorów ["red", "green", "blue"].
-// Dodaj kolor "yellow" do tablicy.
-// Wypisz długość tablicy i wszystkie kolory.
+// 5. Napisz zmienną var jezyk = "polski" wewnątrz bloku { }.
+//    Wypisz ją POZA blokiem — sprawdź, czy działa (var nie ma zasięgu blokowego).
 
+// --- JS-002 — Hoisting ---
 
-// ZADANIE 4
-// Napisz zmienną let isLoggedIn = false.
-// Zmień ją na true.
-// Wypisz jej wartość przed i po zmianie.
+// 6. Wypisz zmienną wynik ZANIM ją zadeklarujesz przez var wynik = 100.
+//    Wypisz ją jeszcze raz PO deklaracji. Porównaj oba wyniki.
 
+// 7. Napisz function declaration policzPole(bok) zwracającą bok * bok.
+//    Wywołaj ją w linijce PRZED jej deklaracją w pliku. Sprawdź, czy działa.
 
-// ZADANIE 5
-// Napisz trzy zmienne: imię (const), wiek (let), adres (let).
-// Zmień wiek o +1 (urodziny).
-// Zmień adres.
-// Wypisz wszystkie trzy.
+// 8. Napisz const policzObwod = function(bok) { return bok * 4; }.
+//    W komentarzu opisz, co by się stało, gdybyś wywołał policzObwod
+//    PRZED tą linijką — nie musisz tego uruchamiać.
 
+// 9. Napisz komentarz z krótkim kodem: console.log(x); let x = 5;
+//    NIE odkomentowuj go — napisz obok w komentarzu, jaki błąd by to
+//    spowodowało i dlaczego (Temporal Dead Zone).
 
-// --- JS-001: var ---
+// 10. Napisz funkcję test() z var a na górze (bez wartości) i let b na końcu
+//     (z wartością). Wypisz a od razu na początku funkcji (przed przypisaniem)
+//     — sprawdź, co zwraca.
 
-// ZADANIE 6
-// Napisz zmienną var score = 0 wewnątrz funkcji gra().
-// Zwiększ score trzy razy o 10.
-// Wypisz score wewnątrz funkcji.
-// Spróbuj wypisać score poza funkcją — napisz komentarz co się stanie.
+// --- JS-003 — let ---
 
+// 11. Napisz zmienną let temperatura = 18. Zmień ją na 22, a potem na 25.
+//     Wypisz każdą zmianę osobno.
 
-// ZADANIE 7
-// Napisz pętlę for z var i = 0.
-// Wewnątrz pętli (3 iteracje) wypisz i.
-// Po pętli wypisz i — i zanotuj w komentarzu jaką ma wartość i dlaczego.
+// 12. Napisz let miasto = "Gdańsk". W komentarzu napisz, jak wyglądałaby
+//     próba redeklaracji (let miasto = "Poznań";) w tym samym zasięgu
+//     i dlaczego to błąd — nie musisz jej uruchamiać.
 
+// 13. Napisz pętlę for (let i = 0; i < 4; i++) wypisującą i w każdej iteracji.
+//     Po pętli spróbuj wypisać i — zanotuj w komentarzu, co się stanie.
 
-// ZADANIE 8
-// Zrób to samo co w zadaniu 7, ale z let.
-// Spróbuj wypisać i po pętli.
-// Zapisz w komentarzu co się różni.
+// 14. Napisz blok { let sekret = "ukryty"; console.log(sekret); }.
+//     Spróbuj wypisać sekret zaraz po bloku — zanotuj wynik w komentarzu.
 
+// 15. Napisz let poziom = "zewnętrzny" poza blokiem { }.
+//     Wewnątrz bloku napisz let poziom = "wewnętrzny" (shadowing) i wypisz
+//     oba — jeden przed blokiem, jeden w środku.
 
-// --- JS-002: hoisting ---
+// --- JS-004 — const ---
 
-// ZADANIE 9
-// Napisz kod który wywołuje funkcję sayHi("Jan") PRZED jej deklaracją.
-// Sprawdź czy działa i napisz dlaczego.
+// 16. Napisz const PI = 3.14. W komentarzu napisz, jaki błąd spowodowałaby
+//     próba przypisania jej nowej wartości.
 
+// 17. Napisz const samochod = { marka: "Toyota", kolor: "czerwony" }.
+//     Zmień samochod.kolor na "niebieski" (bez przepisywania stałej).
+//     Wypisz cały obiekt.
 
-// ZADANIE 10
-// Napisz const greet = function(name) { ... } która zwraca "Cześć, [name]!".
-// Spróbuj wywołać greet PRZED deklaracją — napisz w komentarzu co się stanie.
-// Wywołaj ją PO deklaracji.
+// 18. Napisz const zakupy = ["chleb", "mleko"]. Dodaj "masło" metodą push().
+//     Wypisz tablicę.
 
+// 19. Na tej samej tablicy zakupy wywołaj pop(), aby usunąć ostatni element.
+//     Wypisz tablicę po usunięciu.
 
-// ZADANIE 11
-// Napisz kod z var x (bez przypisania) na górze funkcji.
-// Wypisz x przed przypisaniem — zanotuj wynik.
-// Przypisz x = 42.
-// Wypisz x po przypisaniu.
+// 20. Napisz w komentarzu wyjaśnienie: dlaczego const pozwala modyfikować
+//     zawartość tablicy/obiektu, ale nie pozwala przypisać nowej wartości
+//     do całej zmiennej?
 
+// --- JS-005 — Zasięgi zmiennych ---
 
-// --- JS-005: zasięgi ---
+// 21. Napisz const nazwaFirmy = "TechCorp" poza funkcją.
+//     Napisz funkcję pokazFirme(), która wypisuje nazwaFirmy. Wywołaj funkcję.
 
-// ZADANIE 12
-// Napisz zmienną language = "polski" na zewnątrz funkcji.
-// Napisz funkcję showLanguage() która wypisuje language.
-// Wywołaj funkcję. Zademonstruj że ma dostęp do zewnętrznej zmiennej.
+// 22. Napisz funkcję zewnetrzna() z const haslo = "tajneHaslo123" w środku.
+//     Wewnątrz niej napisz funkcję wewnetrzna(), która wypisuje haslo.
+//     Wywołaj wewnetrzna() wewnątrz zewnetrzna().
 
+// 23. W komentarzu napisz, jaki błąd spowodowałaby próba wywołania funkcji
+//     wewnetrzna() z zadania 22 POZA funkcją zewnetrzna().
 
-// ZADANIE 13
-// Napisz funkcję outer() z zmienną secret = "tajemnica".
-// Wewnątrz napisz funkcję inner() która wypisuje secret.
-// Wywołaj outer(). Spróbuj wywołać inner() poza outer() — co się stanie?
+// 24. Napisz dwie oddzielne funkcje, każda z własną zmienną let licznik = 0,
+//     niezależną od drugiej. W jednej zwiększ licznik dwa razy, w drugiej raz.
+//     Wypisz obie wartości i sprawdź, że się nie mieszają.
 
+// 25. Napisz const kolor = "zielony" poza funkcją. Napisz funkcję pokazKolor()
+//     z własną const kolor = "czerwony" w środku (shadowing).
+//     Wypisz kolor na zewnątrz i wewnątrz funkcji — porównaj.
 
-// ZADANIE 14
-// Napisz dwie zmienne o tej samej nazwie counter:
-// jedną na zewnątrz funkcji, jedną wewnątrz.
-// Wypisz counter z obu miejsc i zanotuj różnicę (variable shadowing).
-
-
-// ZADANIE 15
-// Napisz funkcję makeGreeter(greeting) która zwraca funkcję.
-// Zwrócona funkcja przyjmuje name i zwraca "[greeting], [name]!".
-// Stwórz helloGreeter i hiGreeter.
-// Wywołaj oba z różnymi imionami.
-
-
-// ZADANIE 16
-// Napisz blok { } z let blockVar = "wewnątrz bloku".
-// Wypisz blockVar wewnątrz bloku.
-// Spróbuj wypisać poza blokiem — co się stanie?
-
-
-// ZADANIE 17
-// Napisz funkcję countDown(from) która wypisuje liczby od from do 1
-// używając let w pętli for.
-// Wywołaj countDown(5).
-
-
-// --- JS-006: var vs let vs const ---
-
-// ZADANIE 18
-// Napisz kod konfiguracji aplikacji.
-// MAX_USERS — nie zmienia się → wybierz odpowiedni słowo kluczowe.
-// currentUserCount — zmienia się → wybierz odpowiednie.
-// sessionToken — raz ustawiony, nie zmienia się → ?
-// Uzasadnij w komentarzu swój wybór dla każdej zmiennej.
-
-
-// ZADANIE 19
-// Napisz funkcję refaktorowaną: zamień WSZYSTKIE var na const lub let.
-// Zdecyduj samodzielnie które jest które.
-
-function calculateBill(items) {
-  var total = 0;
-  var tax = 0.23;
-  var discount = 0;
-  for (var i = 0; i < items.length; i++) {
-    var item = items[i];
-    var itemTotal = item.price * item.quantity;
-    total += itemTotal;
-  }
-  var taxAmount = total * tax;
-  var finalTotal = total + taxAmount - discount;
-  return finalTotal;
-}
-
-// Przepisana wersja:
-
-
-// ZADANIE 20
-// Napisz moduł "licznik kliknięć" używając closure.
-// Funkcja createClickCounter() powinna zwracać obiekt z metodami:
-// click() — zwiększa licznik, getCount() — zwraca wynik, reset() — zeruje.
-// Użyj const i let we właściwych miejscach.
-// Stwórz dwa osobne liczniki i sprawdź że są niezależne.
-
-
-// ============================================================
-// SEKCJA B — ŚREDNIO TRUDNE
-// ============================================================
-
-// ZADANIE 21 — PRZEWIDAJ wynik: var + hoisting
-
-console.log(typeof mystery);
-var mystery = "znaleziony";
-console.log(mystery);
-// Wyniki (przed uruchomieniem):
-
-// ZADANIE 22 — NAPRAW: var w pętli z setTimeout
-
-for (var i = 0; i < 3; i++) {
-  setTimeout(() => console.log("var i:", i), 0);
-}
-// a) Co wypisze? Dlaczego?
-// b) Napraw za pomocą let:
-
-
-// ZADANIE 23 — NAPRAW: const z obiektem
-
-// Ten kod rzuca TypeError — znajdź przyczynę i napraw
-
-// const settings = { theme: "dark", lang: "pl" };
-// settings = { theme: "light", lang: "en" };
-// console.log(settings.theme);
-
-// Naprawiona wersja:
-
-
-// ZADANIE 24 — ZAIMPLEMENTUJ: generator ID
-
-// Napisz funkcję makeIdGenerator(prefix) zwracającą funkcję.
-// Każde wywołanie zwraca kolejny ID: "user-1", "user-2", ...
-
-function makeIdGenerator(prefix) {
-  // TODO
-}
-
-// const nextUserId = makeIdGenerator("user");
-// console.log(nextUserId()); // "user-1"
-// console.log(nextUserId()); // "user-2"
-// console.log(makeIdGenerator("order")()); // "order-1" — własny licznik!
-
-
-// ============================================================
-// SEKCJA C — TRUDNE
-// ============================================================
-
-// ZADANIE 25 — session tracker
-
-// Napisz moduł sessionTracker z metodami:
-// start(userId): zapisz userId i timestamp startu
-// isExpired(): upłynęło > 30 minut od startu?
-// getRemainingMs(): ile ms zostało
-// end(): wyczyść sesję
-// Użyj const dla SESSION_DURATION, let dla reszty stanu.
-
-const sessionTracker = (function() {
-  // TODO
-})();
+// 26. Napisz funkcję trzyPoziomy() z const a = "poziom 1". Wewnątrz zagnieżdżoną
+//     funkcję z const b = "poziom 2", a wewnątrz niej kolejną z const c = "poziom 3",
+//     która wypisuje a, b i c. Wywołaj całość.
+
+// --- JS-006 — var vs let vs const: kiedy co? ---
+
+// 27. Napisz stałą MAX_PUNKTOW = 100, która nigdy się nie zmienia.
+//     Uzasadnij w komentarzu, dlaczego użyłeś/aś const.
+
+// 28. Napisz zmienną aktualnyWynik = 0, która będzie się zmieniać w trakcie gry.
+//     Uzasadnij w komentarzu wybór let.
+
+// 29. Napisz trzy zmienne opisujące użytkownika: identyfikator (nigdy się
+//     nie zmienia), liczbaOdwiedzin (zmienia się), ostatniaAktywnosc (zmienia się).
+//     Wybierz odpowiednie słowo kluczowe dla każdej i uzasadnij krótko w komentarzu.
+
+// 30. Napisz pętlę for używając let do iteracji oraz const SUMA_POCZATKOWA = 0
+//     poza pętlą jako punkt odniesienia (nieużywany do modyfikacji).
+//     Wypisz w pętli każdą wartość i.
+
+// 31. Napisz krótki fragment kodu z var w miejscu, gdzie powinno być let
+//     (np. w pętli for). Przepisz go poprawnie na let i zanotuj w komentarzu,
+//     dlaczego to lepszy wybór.
+
+// 32. Napisz funkcję stworzWitacza(powitanie), która zwraca funkcję przyjmującą
+//     imie i zwracającą `${powitanie}, ${imie}!`. Stwórz dwie zmienne:
+//     witajPolski i witajAngielski z różnym powitaniem. Wywołaj obie
+//     z różnymi imionami.
+
+// 33. Napisz const listaZadan = ["kupić mleko", "posprzątać"]. Napisz funkcję
+//     dodajZadanie(zadanie), która dodaje zadanie do listaZadan (odwołuje się
+//     do zmiennej z zewnętrznego zasięgu). Wywołaj ją dwa razy z różnymi
+//     zadaniami i wypisz listaZadan.
+
+// 34. Napisz let aktywny = true w głównym zasięgu pliku. Napisz funkcję
+//     przelacz(), która zmienia aktywny na przeciwną wartość (użyj !aktywny)
+//     i wypisuje nową wartość. Wywołaj przelacz() trzy razy pod rząd.
+
+// 35. Napisz const konfiguracja = { motyw: "ciemny" } w głównym zasięgu.
+//     Napisz funkcję zmienMotyw(nowyMotyw), która zmienia konfiguracja.motyw
+//     (bez przepisywania stałej). Wywołaj z "jasny" i wypisz konfiguracja.

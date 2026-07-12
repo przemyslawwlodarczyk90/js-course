@@ -1,376 +1,207 @@
-// ============================================================
-// SEKCJA A — ŁATWE / TEORETYCZNE
-// ============================================================
+// Ćwiczenia — obiekty
+// Poziom: łatwy / językowy — proste wywołania metod i mechanik, bez algorytmów.
 
-// JS-027 — ZADANIE 1: uzupełnij — tworzenie i dostęp
-// ============================================================
-
-// Utwórz obiekt użytkownika z polami: id, name, email, role
-const user = {
-  id: ___,
-  name: ___,
-  email: ___,
-  role: "user",
+const ksiazka = { tytul: "Diuna", autor: "Frank Herbert", rok: 1965, strony: 412 };
+const firma = {
+  nazwa: "Techno",
+  adres: { miasto: "Poznań", kod: "60-001" },
+  aktywna: true,
 };
+const ustawienia = { motyw: "jasny", jezyk: "pl", powiadomienia: false };
 
-// Dostęp notacją kropkową:
-console.log(user.___);    // "user"
+// --- JS-027: tworzenie obiektów i dostęp ---
 
-// Dostęp notacją nawiasową (użyj zmiennej):
-const field = "name";
-console.log(user[___]);   // wartość pola name
+// 1. Napisz obiekt film z polami: tytul, rezyser, rok, gatunek. Wypisz każde
+//    pole osobno notacją kropkową.
 
-// Sprawdź czy pole "phone" istnieje:
-console.log(___ in user);   // false
+// 2. Napisz obiekt telefon z polami: marka, model, cena. Wypisz pole cena
+//    notacją nawiasową telefon["cena"].
 
-// Usuń pole role:
-delete user.___;
-console.log(user.role);   // undefined
+// 3. Zmień pole cena w obiekcie telefon na nową wartość. Dodaj nowe pole
+//    kolor. Wypisz cały obiekt.
 
-// Odpowiedzi:
+// 4. Usuń pole gatunek z obiektu film przez delete. Wypisz obiekt film
+//    po usunięciu.
 
-// ============================================================
-// JS-027 — ZADANIE 2: shorthand + computed properties
-// ============================================================
+// 5. Sprawdź czy obiekt telefon ma pole "gwarancja" przez operator in.
+//    Wypisz wynik.
 
-const name = "Jan";
-const age = 30;
+// 6. Wypisz firma.adres.miasto (dostęp do zagnieżdżonego obiektu).
 
-// Shorthand (zamiast { name: name, age: age }):
-const person = { ___, ___ };
-console.log(person); // { name: "Jan", age: 30 }
+// 7. Napisz obiekt osoba z metodą przedstawSie() zwracającą string
+//    z jej imieniem. Wywołaj metodę i wypisz wynik.
 
-// Computed property key:
-const key = "role";
-const obj = { [___]: "admin" };
-console.log(obj.role); // "admin"
+// --- JS-027: dynamiczny klucz i computed property ---
 
-// Odpowiedzi:
+// 8. Masz const pole = "autor". Odczytaj wartość ksiazka[pole] i wypisz.
 
-// ============================================================
-// JS-028 — ZADANIE 3: uzupełnij — Object.*
-// ============================================================
+// 9. Stwórz obiekt z computed property: klucz pochodzi ze zmiennej
+//    const nazwaKlucza = "kolor" — { [nazwaKlucza]: "czerwony" }. Wypisz.
 
-const config = { host: "localhost", port: 3000, debug: true };
+// 10. Stwórz obiekt z dwoma computed properties naraz, gdzie klucze budowane
+//     są przez szablon: const prefix = "produkt"; klucze `${prefix}Id`
+//     i `${prefix}Nazwa`. Wypisz obiekt.
 
-const keys   = Object.___( config );  // ["host", "port", "debug"]
-const values = Object.___( config );  // ["localhost", 3000, true]
-const entries = Object.___( config ); // [["host","localhost"], ...]
+// --- JS-027: shorthand properties ---
 
-// Zamień klucze na UPPERCASE:
-const upper = Object.fromEntries(
-  Object.entries(config).map(([k, v]) => [k.___, v])
-);
+// 11. Masz zmienne const marka = "Toyota"; const model = "Corolla".
+//     Stwórz obiekt auto używając shorthand properties. Wypisz.
 
-// Skopiuj z nadpisaniem:
-const merged = Object.___({}, config, { debug: false, timeout: 5000 });
+// 12. Napisz funkcję stworzUzytkownika(imie, wiek) zwracającą obiekt
+//     { imie, wiek } przez shorthand properties. Wywołaj i wypisz wynik.
 
-console.log(keys);
-console.log(values);
-console.log(upper);
-console.log(merged);
+// --- JS-028: Object.keys / Object.values / Object.entries ---
 
-// Odpowiedzi (metody): keys / values / entries / toUpperCase() / assign
+// 13. Wypisz klucze obiektu ustawienia przez Object.keys.
 
-// ============================================================
-// JS-029 — ZADANIE 4: uzupełnij — dekonstrukcja obiektu
-// ============================================================
+// 14. Wypisz wartości obiektu ustawienia przez Object.values.
 
-const product = { id: 1, name: "Laptop", price: 3499, category: "electronics" };
+// 15. Wypisz pary klucz-wartość obiektu ustawienia przez Object.entries.
 
-// Podstawowa dekonstrukcja:
-const { id, name: productName, price } = product;
-// productName = ?  price = ?
+// 16. Zamień Object.entries(ustawienia) na Mapę przez new Map(...).
+//     Odczytaj z niej wartość pola "motyw" przez .get().
 
-// Z wartością domyślną (pole nie istnieje):
-const { rating = 0 } = product;
-// rating = ?
+// --- JS-028: Object.fromEntries ---
 
-// Reszta właściwości:
-const { id: _, ...rest } = product;
-// rest = ?  (bez id)
+// 17. Masz tablicę par [["a", 1], ["b", 2], ["c", 3]]. Zamień ją na obiekt
+//     przez Object.fromEntries. Wypisz.
 
-// Dekonstrukcja zagnieżdżona:
-const company = { name: "Acme", address: { city: "Warszawa", zip: "00-001" } };
-const { address: { city } } = company;
-// city = ?
+// 18. Masz obiekt cennik = { chleb: 4.5, mleko: 3.2, maslo: 8.0 }.
+//     Użyj Object.entries + map + Object.fromEntries żeby podnieść każdą
+//     cenę o 10% (zaokrąglone do 2 miejsc). Wypisz nowy obiekt.
 
-// Odpowiedzi:
+// --- JS-028: Object.assign / Object.freeze ---
 
-// ============================================================
-// JS-030 — ZADANIE 5: ?. i ?? — uzupełnij
-// ============================================================
+// 19. Masz dwa obiekty: domyslne = { rozmiar: "M", kolor: "czarny" }
+//     i wybor = { kolor: "biały" }. Scal je przez Object.assign w NOWY
+//     obiekt (bez mutowania domyslne). Wypisz wynik.
 
-const response = {
-  data: {
-    user: null,
-  },
-};
+// 20. Zamroź obiekt stale = { PI: 3.14, E: 2.71 } przez Object.freeze.
+//     Spróbuj zmienić stale.PI na 100. Wypisz wartość po próbie
+//     (powinna zostać bez zmian).
 
-// Bez optional chaining — TypeError!
-// response.data.user.name → BŁĄD
+// --- JS-029: dekonstrukcja obiektu ---
 
-// Z optional chaining:
-console.log(response.data?.___.___);   // undefined (nie rzuca błędu)
+// 21. Zdestrukturyzuj obiekt ksiazka: wyciągnij tytul i autor do osobnych
+//     zmiennych. Wypisz obie.
 
-// Nullish coalescing:
-const count = 0;
-console.log(count || 10);   // ? — czy to poprawne gdy 0 jest prawidłową wartością?
-console.log(count ?? 10);   // ? — poprawne użycie
+// 22. Zdestrukturyzuj obiekt ksiazka zmieniając nazwę zmiennej: rok jako
+//     rokWydania. Wypisz rokWydania.
 
-const username = null;
-console.log(username ?? "Gość");   // ?
+// 23. Zdestrukturyzuj obiekt { imie: "Ala" }, wyciągając też pole wiek
+//     z wartością domyślną 18 (którego obiekt nie ma). Wypisz wiek.
 
-// Odpowiedzi:
+// 24. Zdestrukturyzuj zagnieżdżony obiekt firma: wyciągnij bezpośrednio
+//     zmienną miasto z firma.adres.
 
-// ============================================================
-// JS-030 — ZADANIE 6: PRAWDA czy FAŁSZ — ?. i ??
-// ============================================================
+// 25. Zdestrukturyzuj obiekt ksiazka wyciągając tytul, a resztę pól zbierz
+//     do obiektu rest przez ...rest. Wypisz rest.
 
-// ___ ?. zwraca undefined (nie null) gdy nie może przejść dalej
-// ___ ?? daje fallback gdy wartość jest 0
-// ___ ?? daje fallback gdy wartość jest ""
-// ___ ?? daje fallback gdy wartość jest null
-// ___ ?? daje fallback gdy wartość jest undefined
-// ___ || daje fallback gdy wartość jest 0
-// ___ || i ?? są zawsze wymienne
+// 26. Napisz funkcję opiszKsiazke({ tytul, autor }) przyjmującą
+//     zdestrukturyzowany parametr i zwracającą string "tytul - autor".
+//     Wywołaj ją na obiekcie ksiazka.
 
-// Odpowiedzi:
+// --- JS-030: optional chaining ?. ---
 
-// ============================================================
-// JS-031 — ZADANIE 7: spread obiektów — uzupełnij
-// ============================================================
+// 27. Masz obiekt zamowienie = { klient: { dane: null } }. Bezpiecznie
+//     odczytaj zamowienie.klient.dane?.email przez ?. — wypisz wynik
+//     (powinien być undefined, bez błędu).
 
-const defaults = { theme: "light", lang: "pl", notifications: true };
-const overrides = { theme: "dark", timeout: 5000 };
+// 28. Masz obiekt strona = { tresc: {} }. Odczytaj bezpiecznie
+//     strona.tresc?.sekcje?.[0]?.naglowek. Wypisz wynik.
 
-// Scal z nadpisaniem (overrides wygrywa):
-const merged2 = { ___defaults, ___overrides };
-console.log(merged2);
-// { theme: "dark", lang: "pl", notifications: true, timeout: 5000 }
+// 29. Masz const funkcjaLogujaca = null. Wywołaj ją bezpiecznie przez
+//     funkcjaLogujaca?.("test") — sprawdź że nie ma błędu.
 
-// Płytka kopia:
-const copy = { ___defaults };
-copy.theme = "custom";
-console.log(defaults.theme); // ? — czy oryginał zmieniony?
+// 30. Masz tablicę obiektów z częściowo brakującymi zagnieżdżonymi polami:
+//     [{ nazwa: "A", dane: { ilosc: 5 } }, { nazwa: "B" }]
+//     Dla każdego elementu wypisz nazwa oraz dane?.ilosc ?? "brak".
 
-// Odpowiedzi:
+// --- JS-030: nullish coalescing ?? ---
 
-// ============================================================
-// JS-032 — ZADANIE 8: JSON — uzupełnij
-// ============================================================
+// 31. Masz const liczbaPunktow = 0. Wypisz liczbaPunktow || 100 oraz
+//     liczbaPunktow ?? 100 — porównaj wyniki i skomentuj różnicę.
 
-const data = { name: "Anna", score: 95, active: true };
+// 32. Masz const pseudonim = null. Wypisz pseudonim ?? "Gość".
 
-// Serializacja:
-const json = JSON.___( data );
-console.log(typeof json); // ?
+// 33. Masz const opcje = null. Bezpiecznie wypisz opcje?.rozmiarStrony ?? 25.
 
-// Deserializacja:
-const parsed = JSON.___( json );
-console.log(typeof parsed); // ?
-console.log(parsed.name);   // ?
+// --- JS-031: spread operator na obiektach ---
 
-// Co JSON ignoruje?
-const tricky = { fn: () => "test", undef: undefined, num: Infinity };
-console.log(JSON.stringify(tricky)); // ?
-// Wyjaśnij co się stało z fn, undef, num:
+// 34. Masz obiekt baza = { x: 1, y: 2, z: 3 }. Stwórz nowy obiekt
+//     rozszerzony = { ...baza, w: 4, y: 100 } (nadpisanie y). Wypisz
+//     i skomentuj które y wygrało.
 
-// Odpowiedzi (metody): stringify / parse
-
-// ============================================================
-// JS-033 — ZADANIE 9: Date — uzupełnij
-// ============================================================
-
-const now = new Date();
-
-// Wypełnij metody:
-console.log(now.___()); // rok (np. 2024)
-console.log(now.___()); // miesiąc 0-11 (!) — styczeń = 0
-console.log(now.___()); // dzień miesiąca 1-31
-console.log(now.___()); // dzień tygodnia 0-6 (niedziela = 0)
-console.log(now.___()); // ms od epoki
-
-// Uwaga: miesiące są 0-indexed! Nowa data 31 grudnia 2024:
-const deadline = new Date(2024, ___, 31); // który numer miesiąca?
-
-// Formatowanie:
-console.log(now.toLocaleDateString("pl-PL")); // np. "15.06.2024"
-console.log(now.toISOString());               // np. "2024-06-15T10:30:00.000Z"
-
-// Odpowiedzi (metody): getFullYear / getMonth / getDate / getDay / getTime
-
-// ============================================================
-// SEKCJA B — ŚREDNIO TRUDNE
-// ============================================================
-
-// JS-028 — ZADANIE 10: Object.entries pipeline
-// ============================================================
-
-const pricesUSD = { Laptop: 1200, Phone: 800, Headphones: 250, Monitor: 450 };
-const rate = 4.02;
-
-// Przelicz wszystkie ceny na PLN i zaokrąglij do 2 miejsc:
-const pricesPLN = Object.fromEntries(
-  Object.entries(pricesUSD).map(([name, usd]) => [name, ___])
-);
-// console.log(pricesPLN);
-
-// ============================================================
-// JS-029 — ZADANIE 11: dekonstrukcja w parametrach
-// ============================================================
-
-// Przepisz funkcję używając dekonstrukcji w parametrach
-function displayUser(user) {
-  return `${user.name} (${user.age}) — ${user.role}`;
-}
-
-// Wersja z dekonstrukcją:
-function displayUserDestructured({ ___, ___, ___ }) {
-  return `${name} (${age}) — ${role}`;
-}
-
-// Wersja z wartościami domyślnymi:
-function displayUserWithDefaults({ name = "Anonim", age = 0, role = "user" } = {}) {
-  return `${name} (${age}) — ${role}`;
-}
-// console.log(displayUserWithDefaults()); // "Anonim (0) — user"
-// console.log(displayUserWithDefaults({ name: "Anna", age: 28 })); // "Anna (28) — user"
-
-// ============================================================
-// JS-030 — ZADANIE 12: NAPRAW — optional chaining
-// ============================================================
-
-// Ten kod rzuca TypeError dla niektórych danych. Napraw.
-
-const apiResponses = [
-  { status: 200, data: { users: [{ name: "Anna" }] } },
-  { status: 404, data: null },
-  { status: 200, data: { users: [] } },
-];
-
-function getFirstUserName(response) {
-  return response.data.users[0].name; // BUG
-}
-
-function getFirstUserNameFixed(response) {
-  // TODO: użyj ?. i ??
-}
-
-// apiResponses.forEach(r => console.log(getFirstUserNameFixed(r)));
-// "Anna", "Brak użytkownika", "Brak użytkownika"
-
-// ============================================================
-// JS-031 — ZADANIE 13: immutable update
-// ============================================================
-
-// Zaktualizuj zagnieżdżony stan BEZ mutacji (wzorzec React/Redux).
-// Użyj tylko spread.
-
-const appState = {
-  user: { name: "Jan", preferences: { theme: "light", notifications: { push: false } } },
-  cart: { items: [], total: 0 },
-};
-
-// Utwórz nowy stan: user.name = "Marek", theme = "dark", push = true
-const newState = {
-  ...appState,
-  user: {
-    ...appState.user,
-    name: "Marek",
-    preferences: {
-      ...appState.user.preferences,
-      theme: "dark",
-      notifications: {
-        ...appState.user.preferences.notifications,
-        push: true,
-      },
-    },
-  },
-};
-
-// Sprawdź że oryginał niezmieniony:
-console.log(appState.user.name);                        // "Jan"
-console.log(newState.user.name);                        // "Marek"
-console.log(appState.user.preferences.theme);           // "light"
-console.log(newState.user.preferences.theme);           // "dark"
-
-// ============================================================
-// SEKCJA C — TRUDNE / SCENARIUSZE
-// ============================================================
-
-// JS-027–033 — ZADANIE 14: transformacja danych API
-// ============================================================
-
-// Serwer zwraca snake_case. Zamień na camelCase.
-
-function toCamelCase(str) {
-  // "first_name" → "firstName"
-  // TODO: split("_"), map, join
-}
-
-function transformUser(raw) {
-  // TODO: Object.entries + fromEntries + toCamelCase
-}
-
-const apiUser = {
-  first_name: "Anna", last_name: "Nowak",
-  email_address: "anna@example.com", user_role: "admin",
-};
-
-// console.log(transformUser(apiUser));
-// { firstName: "Anna", lastName: "Nowak", emailAddress: "anna@example.com", userRole: "admin" }
-
-// ============================================================
-// JS-028/031 — ZADANIE 15: deep merge
-// ============================================================
-
-function deepMerge(target, source) {
-  // TODO: rekurencja dla zagnieżdżonych obiektów
-}
-
-const defaultConfig = {
-  server: { host: "localhost", port: 3000 },
-  db: { host: "localhost", port: 5432, name: "dev" },
-};
-
-const prodConfig = {
-  server: { port: 8080 },
-  db: { name: "production", password: "secret" },
-};
-
-// console.log(deepMerge(defaultConfig, prodConfig));
-// { server: { host: "localhost", port: 8080 }, db: { host: "localhost", port: 5432, name: "production", password: "secret" } }
-
-// ============================================================
-// JS-033 — ZADANIE 16: kalkulator dat
-// ============================================================
-
-function dateDiff(date1, date2) {
-  // Zwróć { days, hours, minutes, isOverdue }
-  // TODO: getTime, Math.abs, Math.floor
-}
-
-// console.log(dateDiff("2024-01-01", "2024-01-05T14:30:00"));
-// { days: 4, hours: 14, minutes: 30, isOverdue: false }
-
-// ============================================================
-// JS-027–033 — ZADANIE 17: normalizacja zamówień (Redux pattern)
-// ============================================================
-
-const orders = [
-  { id: "ord-1", userId: "u1", amount: 299, status: "completed" },
-  { id: "ord-2", userId: "u2", amount: 4999, status: "pending" },
-  { id: "ord-3", userId: "u1", amount: 49, status: "completed" },
-];
-
-// Zamień na { byId: {"ord-1": {...}}, allIds: ["ord-1", "ord-2", "ord-3"] }
-function normalize(arr) {
-  // TODO
-}
-
-// const n = normalize(orders);
-// console.log(n.byId["ord-1"].status);    // "completed"
-// console.log(n.allIds.length);           // 3
-// Pobierz zamówienia userId = "u1":
-// console.log(n.allIds.filter(id => n.byId[id].userId === "u1").map(id => n.byId[id]));
+// 35. Masz obiekt uzytkownik = { imie: "Piotr", punkty: [10, 20] }. Zrób
+//     płytką kopię przez spread. Zmień imie w kopii — sprawdź że oryginał
+//     się nie zmienił.
+
+// 36. Ten sam obiekt uzytkownik — dodaj element do punkty w kopii przez
+//     push. Sprawdź czy oryginał się zmienił (powinien, bo to ta sama
+//     referencja tablicy) i skomentuj dlaczego.
+
+// 37. Napisz funkcję zaktualizujProfil(profil, zmiany) zwracającą nowy
+//     obiekt profilu z naniesionymi zmianami, bez mutowania oryginału
+//     (spread). Przetestuj na profil = { id: 1, imie: "Jan", aktywny: true }.
+
+// 38. Masz stan = { zalogowany: false, uzytkownik: null }. Stwórz nowy stan
+//     po zalogowaniu przez spread:
+//     { ...stan, zalogowany: true, uzytkownik: { imie: "Ala" } }.
+//     Sprawdź że oryginalny stan się nie zmienił.
+
+// 39. Masz trzy obiekty: warstwa1 = { a: 1 }, warstwa2 = { b: 2 },
+//     warstwa3 = { a: 99, c: 3 }. Scal wszystkie trzy przez spread w jeden
+//     obiekt — zwróć uwagę która wartość "a" wygrywa.
+
+// --- JS-032: JSON.stringify() i JSON.parse() ---
+
+// 40. Zamień obiekt ksiazka na JSON string przez JSON.stringify. Wypisz
+//     string i jego typ (typeof).
+
+// 41. Zamień obiekt ksiazka na JSON string z wcięciem 2 spacji
+//     (JSON.stringify(ksiazka, null, 2)). Wypisz.
+
+// 42. Masz string JSON '{"imie":"Zosia","wiek":9}'. Sparsuj go przez
+//     JSON.parse i wypisz pole imie.
+
+// 43. Zrób głęboką kopię obiektu firma przez
+//     JSON.parse(JSON.stringify(firma)). Zmień miasto w kopii. Sprawdź
+//     że oryginał się nie zmienił.
+
+// 44. Masz obiekt z trudnymi wartościami:
+//     { funkcja: () => 1, brak: undefined, data: new Date(), tekst: "ok" }
+//     Wypisz wynik JSON.stringify na nim i skomentuj co się stało
+//     z każdym polem.
+
+// 45. Masz obiekt zamowienie = { id: 5, produkty: ["chleb", "mleko"], suma: 12.5 }.
+//     Zamień go na JSON string i wypisz jego długość (.length stringa).
+//     Sparsuj z powrotem i wypisz liczbę produktów.
+
+// --- JS-033: obiekt Date ---
+
+// 46. Stwórz obiekt daty dla dzisiaj przez new Date(). Wypisz rok przez
+//     getFullYear().
+
+// 47. Wypisz miesiąc dzisiejszej daty przez getMonth() — pamiętaj, że jest
+//     0-indexed. Skomentuj co oznacza wynik.
+
+// 48. Wypisz dzień miesiąca przez getDate() i dzień tygodnia przez getDay().
+
+// 49. Wypisz liczbę milisekund od 1970 roku przez getTime().
+
+// 50. Stwórz konkretną datę: 1 maja 2025 przez new Date(2025, 4, 1)
+//     (miesiąc jest 0-indexed!). Wypisz ją.
+
+// 51. Stwórz datę z ISO stringa "2025-12-24T18:00:00". Wypisz getFullYear()
+//     i getDate().
+
+// 52. Oblicz różnicę w dniach między new Date(2025, 0, 1)
+//     i new Date(2025, 0, 20) — użyj getTime() i podziel przez liczbę
+//     milisekund w jednym dniu.
+
+// 53. Wypisz dzisiejszą datę sformatowaną lokalnie przez
+//     toLocaleDateString("pl-PL").
+
+// 54. Wypisz dzisiejszy czas sformatowany przez toLocaleTimeString("pl-PL").
+
+// 55. Wypisz dzisiejszą datę w formacie ISO przez toISOString().

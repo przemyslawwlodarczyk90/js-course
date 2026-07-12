@@ -1,351 +1,216 @@
-// ============================================================
-// SEKCJA A — ŁATWE / TEORETYCZNE
-// ============================================================
+// Ćwiczenia — tablice
+// Poziom: łatwy / językowy — proste wywołania metod i mechanik, bez algorytmów.
 
-// JS-019 — ZADANIE 1: uzupełnij — metody mutujące
-// Uzupełnij ___ właściwą metodą lub wartością
-
-const arr = [1, 2, 3];
-
-arr.___( 4 );               // dodaj 4 na koniec → [1,2,3,4]
-arr.___( 0 );               // dodaj 0 na początek → [0,1,2,3,4]
-const last = arr.___();     // usuń i zwróć ostatni → last = 4, arr = [0,1,2,3]
-const first = arr.___();    // usuń i zwróć pierwszy → first = 0, arr = [1,2,3]
-
-arr.___(1, 1);              // usuń 1 element od indeksu 1 → arr = [1,3]
-arr.___(1, 0, 99);          // wstaw 99 na indeks 1 bez usuwania → arr = [1,99,3]
-
-// Odpowiedzi (metody): push / unshift / pop / shift / splice / splice
-
-// ============================================================
-// JS-019 — ZADANIE 2: PRAWDA czy FAŁSZ — metody tablicowe
-// ============================================================
-
-// ___ push() zwraca nową tablicę
-// ___ pop() zwraca usunięty element
-// ___ filter() modyfikuje oryginalną tablicę
-// ___ map() zawsze zwraca tablicę tej samej długości
-// ___ sort() domyślnie sortuje leksykograficznie (nie numerycznie)
-// ___ slice() nie modyfikuje oryginalnej tablicy
-// ___ forEach() zwraca undefined
-// ___ find() zwraca element lub undefined (nie -1)
-// ___ includes() zwraca boolean
-// ___ indexOf() zwraca -1 gdy brak elementu
-
-// Odpowiedzi:
-
-// ============================================================
-// JS-020 — ZADANIE 3: uzupełnij — filter
-// ============================================================
-
-const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
-const evens    = numbers.filter(n => ___);    // parzyste
-const odds     = numbers.filter(n => ___);    // nieparzyste
-const gt5      = numbers.filter(n => ___);    // większe niż 5
-const between3and7 = numbers.filter(n => ___); // od 3 do 7 włącznie
-
-console.log(evens);         // [2, 4, 6, 8, 10]
-console.log(odds);          // [1, 3, 5, 7, 9]
-console.log(gt5);           // [6, 7, 8, 9, 10]
-console.log(between3and7);  // [3, 4, 5, 6, 7]
-
-// ============================================================
-// JS-021 — ZADANIE 4: uzupełnij — map
-// ============================================================
-
-const words = ["hello", "world", "javascript"];
-
-const upper   = words.map(w => ___);    // HELLO, WORLD, JAVASCRIPT
-const lengths = words.map(w => ___);    // [5, 5, 10]
-const initials = words.map(w => ___);   // "H", "W", "J"
-
-const prices = [10, 25, 50, 100];
-const withTax = prices.map(p => ___);   // +23% VAT, zaokrąglij do 2 miejsc
-                                         // [12.3, 30.75, 61.5, 123]
-
-console.log(upper);
-console.log(lengths);
-console.log(initials);
-console.log(withTax);
-
-// ============================================================
-// JS-021/020 — ZADANIE 5: RÓŻNICA map vs filter
-// ============================================================
-
-// Wyjaśnij w komentarzu dlaczego te dwie instrukcje robią coś innego:
-
-const nums = [1, 2, 3, 4, 5];
-
-const a = nums.map(n => n > 3);     // co zwraca?
-const b = nums.filter(n => n > 3);  // co zwraca?
-
-console.log(a); // ?
-console.log(b); // ?
-
-// Wyjaśnienie map vs filter:
-
-// Kiedy użyć map? Kiedy filter?
-
-// ============================================================
-// JS-022 — ZADANIE 6: forEach vs map — kiedy co?
-// ============================================================
-
-// Które zadanie wymaga map, a które forEach? Wpisz odpowiedź.
-
-// a) Stwórz nową tablicę z kwadratami liczb → ___
-// b) Wypisz każdy element na konsoli → ___
-// c) Wyślij każdy element do API (efekt uboczny) → ___
-// d) Przekształć tablicę stringów na tablicę liczb → ___
-// e) Zsumuj wszystkie elementy → ___ (ani map ani forEach — co?)
-
-// Odpowiedzi:
-
-// ============================================================
-// JS-023 — ZADANIE 7: sort — uzupełnij comparator
-// ============================================================
-
-const n2 = [10, 2, 21, 1, 100, 3];
-
-// Sortuj ROSNĄCO (liczby):
-const asc = [...n2].sort((a, b) => ___);  // a - b
-
-// Sortuj MALEJĄCO:
-const desc = [...n2].sort((a, b) => ___); // b - a
-
-// Co zwróci domyślny sort()?
-const defaultSort = [...n2].sort();
-console.log(defaultSort); // ? — czy to poprawne dla liczb?
-
-// Obiekty: sortuj po price rosnąco
-const items = [{ price: 30 }, { price: 10 }, { price: 20 }];
-const sortedItems = [...items].sort((a, b) => ___);
-console.log(sortedItems.map(i => i.price)); // [10, 20, 30]
-
-// Odpowiedzi (comparatory):
-
-// ============================================================
-// JS-024 — ZADANIE 8: flat i flatMap — uzupełnij
-// ============================================================
-
-const nested = [[1, 2], [3, 4], [5, 6]];
-const flat1 = nested.___();            // [1, 2, 3, 4, 5, 6]
-
-const deepNested = [1, [2, [3, [4]]]];
-const flatAll = deepNested.___(___);   // [1, 2, 3, 4]
-
-const sentences = ["Ala ma kota", "Kot ma Alę"];
-const words = sentences.___(s => s.___(___)); // ["Ala","ma","kota","Kot","ma","Alę"]
-
-// Odpowiedzi:
-
-// ============================================================
-// JS-025 — ZADANIE 9: dekonstrukcja — uzupełnij
-// ============================================================
-
-const [a, b, ...rest] = [10, 20, 30, 40, 50];
-// a = ?    b = ?    rest = ?
-
-const [, , third] = [1, 2, 3];
-// third = ?
-
-const [x = 0, y = 0, z = 0] = [1, 2];
-// z = ?  (wartość domyślna)
-
-// Zamiana zmiennych:
-let p = 1, q = 2;
-[p, q] = [q, p];
-// p = ?    q = ?
-
-// Odpowiedzi:
-
-// ============================================================
-// JS-026 — ZADANIE 10: spread — co zwróci?
-// ============================================================
-
-const c = [1, 2, 3];
-const d = [4, 5, 6];
-
-console.log([...c, ...d]);       // ?
-console.log([0, ...c, 3.5, ...d]); // ?
-console.log([..."abc"]);          // ?
-console.log([...new Set([1,2,2,3,3])]);  // ?
-console.log(Math.max(...c));      // ?
-
-// Odpowiedzi:
-
-// ============================================================
-// SEKCJA B — ŚREDNIO TRUDNE
-// ============================================================
-
-// Dane używane w sekcji B i C:
-const products = [
-  { id: 1, name: "Laptop Pro", price: 3499, category: "electronics", rating: 4.5, inStock: true },
-  { id: 2, name: "Koszulka",   price: 49,   category: "clothing",    rating: 4.1, inStock: true },
-  { id: 3, name: "iPhone 15",  price: 4999, category: "electronics", rating: 4.8, inStock: false },
-  { id: 4, name: "Kurs JS",    price: 299,  category: "education",   rating: 4.9, inStock: true },
-  { id: 5, name: "Słuchawki",  price: 599,  category: "electronics", rating: 4.2, inStock: true },
-  { id: 6, name: "Spodnie",    price: 129,  category: "clothing",    rating: 3.8, inStock: true },
+const temperatury = [15, 22, 8, 30, 19, 3, 25];
+const zwierzeta = ["kot", "pies", "papuga", "chomik", "żółw", "kot"];
+const pracownicy = [
+  { imie: "Marta", wiek: 34, dzial: "IT", zatrudniona: true },
+  { imie: "Tomek", wiek: 19, dzial: "Sprzedaż", zatrudniona: false },
+  { imie: "Ola", wiek: 41, dzial: "IT", zatrudniona: true },
+  { imie: "Kuba", wiek: 27, dzial: "Marketing", zatrudniona: true },
+  { imie: "Zosia", wiek: 16, dzial: "Sprzedaż", zatrudniona: false },
 ];
 
-// JS-020 — ZADANIE 11: filter w praktyce
-// ============================================================
+// --- JS-019: dostęp do elementów tablicy ---
 
-// a) Dostępne produkty elektroniczne
-const availableElectronics = products.filter(___);
+// 1. Wypisz pierwszy element tablicy temperatury (notacja z indeksem [0]).
 
-// b) Produkty tańsze niż 200 zł
-const cheap = products.filter(___);
+// 2. Wypisz ostatni element tablicy temperatury za pomocą .at(-1).
 
-// c) Produkty z ratingiem >= 4.5
-const topRated = products.filter(___);
+// 3. Wypisz przedostatni element tablicy zwierzeta za pomocą .at(-2).
 
-// console.log(availableElectronics.map(p => p.name)); // Laptop Pro, Słuchawki
-// console.log(cheap.map(p => p.name));                // Koszulka, Spodnie
-// console.log(topRated.map(p => p.name));             // Laptop Pro, iPhone 15, Kurs JS
+// 4. Wypisz długość tablicy pracownicy (.length).
 
-// ============================================================
-// JS-021 — ZADANIE 12: map w praktyce
-// ============================================================
+// 5. Wypisz trzeci element tablicy zwierzeta (indeks 2).
 
-// a) Lista nazw wszystkich produktów
-const names = products.map(___);
+// --- JS-019: push / pop / shift / unshift ---
 
-// b) Lista cen po rabacie 10% (zaokrąglone)
-const discounted = products.map(p => ({
-  name: p.name,
-  originalPrice: p.price,
-  discountedPrice: ___,
-}));
+// 6. Stwórz pustą tablicę koszyk. Dodaj do niej 4 nazwy zakupów przez push
+//    (osobne wywołania). Wypisz tablicę.
 
-// c) Lista stringów formatu "Laptop Pro — 3499 zł (⭐4.5)"
-const labels = products.map(p => `${p.___} — ${p.___} zł (⭐${p.___})`);
+// 7. Do tablicy ["mleko", "chleb"] dodaj jednym wywołaniem push dwa produkty
+//    naraz: "masło" i "jajka". Wypisz.
 
-// console.log(names);
-// console.log(discounted);
-// console.log(labels);
+// 8. Weź tablicę [1, 2, 3, 4, 5]. Usuń ostatni element przez pop i zapisz go
+//    do osobnej zmiennej. Wypisz zmienną i tablicę po usunięciu.
 
-// ============================================================
-// JS-023 — ZADANIE 13: sort w praktyce
-// ============================================================
+// 9. Weź tablicę ["a", "b", "c"]. Usuń pierwszy element przez shift i zapisz
+//    do osobnej zmiennej. Wypisz zmienną i tablicę.
 
-// a) Posortuj po cenie rosnąco (nie mutuj oryginału!)
-const byPriceAsc = ___; // TODO
+// 10. Weź tablicę [10, 20, 30]. Dodaj 0 na początku przez unshift. Wypisz.
 
-// b) Posortuj po nazwie alfabetycznie
-const byName = ___; // TODO: localeCompare
+// 11. Weź pustą tablicę. Wykonaj po kolei: push("start"), push("środek"),
+//     unshift("początek"), pop(). Po każdym kroku wypisz aktualny stan tablicy.
 
-// c) Posortuj: najpierw inStock: true, potem po ratingu malejąco
-const byStockThenRating = [...products].sort((a, b) => {
-  // TODO
-});
+// --- JS-019: splice ---
 
-// console.log(byPriceAsc.map(p => `${p.name}:${p.price}`));
+// 12. Weź tablicę [1, 2, 3, 4, 5, 6]. Usuń dwa elementy zaczynając od indeksu 2
+//     przez splice. Wypisz tablicę po operacji.
 
-// ============================================================
-// JS-021 + JS-020 — ZADANIE 14: map + filter chain
-// ============================================================
+// 13. Weź tablicę ["a", "b", "d", "e"]. Wstaw "c" na indeks 2 bez usuwania
+//     (splice z drugim argumentem 0). Wypisz.
 
-// W jednym łańcuchu:
-// 1. Filtruj dostępne produkty
-// 2. Przekształć na format { name, priceWithTax }
-// 3. Posortuj po priceWithTax rosnąco
+// 14. Weź tablicę ["pon", "wt", "czw"]. Wstaw "śr" na właściwe miejsce
+//     (indeks 2) przez splice. Wypisz.
 
-const result = products
-  .filter(___)
-  .map(p => ({ name: p.name, priceWithTax: Math.round(p.price * 1.23) }))
-  .sort(___);
+// 15. Weź tablicę [100, 200, 300, 400]. Zamień element na indeksie 1
+//     na wartość 999 przez splice (usuń 1 element, wstaw 1 element). Wypisz.
 
-// console.log(result);
+// --- JS-019: reverse / sort (podstawowe) ---
 
-// ============================================================
-// SEKCJA C — TRUDNE / SCENARIUSZE
-// ============================================================
+// 16. Weź tablicę zwierzeta. Odwróć jej kolejność przez reverse
+//     (uwaga: mutuje oryginał!). Wypisz.
 
-// JS-019–026 — ZADANIE 15: reduce — statystyki
-// ============================================================
+// 17. Weź tablicę ["c", "a", "b"]. Posortuj domyślnym sort() (alfabetycznie).
+//     Wypisz.
 
-// a) Suma cen wszystkich dostępnych produktów
-const totalInStock = products
-  .filter(p => p.inStock)
-  .reduce((sum, p) => sum + p.price, 0);
+// 18. Skopiuj tablicę temperatury przez spread, odwróć KOPIĘ przez reverse.
+//     Sprawdź że oryginał się nie zmienił — wypisz oba.
 
-// b) Obiekt: liczba produktów w każdej kategorii
-const countByCategory = products.reduce((acc, p) => {
-  acc[p.category] = (acc[p.category] ?? 0) + 1;
-  return acc;
-}, {});
+// --- JS-019: slice / join (niemutujące) ---
 
-// c) Najdroższy produkt (używając reduce — bez sort)
-const mostExpensive = products.reduce((best, p) => ___);
+// 19. Z tablicy [1, 2, 3, 4, 5, 6, 7] wytnij fragment od indeksu 1 do 4
+//     (bez mutacji) przez slice. Wypisz wynik i oryginał.
 
-// console.log(totalInStock);
-// console.log(countByCategory);
-// console.log(mostExpensive.name);
+// 20. Z tablicy zwierzeta wytnij ostatnie dwa elementy przez slice
+//     z ujemnym indeksem (slice(-2)). Wypisz.
 
-// ============================================================
-// JS-024 — ZADANIE 16: flatMap — tagi
-// ============================================================
+// 21. Połącz tablicę ["Ala", "ma", "kota"] w jeden string przez join(" ").
+//     Wypisz.
 
-const articles = [
-  { title: "JS basics", tags: ["javascript", "beginner"] },
-  { title: "React intro", tags: ["react", "javascript"] },
-  { title: "Node.js API", tags: ["nodejs", "api", "javascript"] },
-];
+// 22. Połącz tablicę [2024, 6, 15] w string w formacie "2024-6-15"
+//     przez join("-"). Wypisz.
 
-// a) Wszystkie tagi (z duplikatami)
-const allTags = articles.flatMap(a => ___);
+// --- JS-019: indexOf / lastIndexOf / includes / find / findIndex ---
 
-// b) Unikalne tagi
-const uniqueTags = [...new Set(allTags)];
+// 23. Znajdź indeks wartości "chomik" w tablicy zwierzeta przez indexOf.
+//     Wypisz.
 
-// c) Mapa: tag → liczba artykułów z tym tagiem
-const tagCount = allTags.reduce((acc, tag) => {
-  acc[tag] = (acc[tag] ?? 0) + 1;
-  return acc;
-}, {});
+// 24. Tablica zwierzeta ma dwa razy "kot" — znajdź indeks OSTATNIEGO
+//     wystąpienia przez lastIndexOf. Wypisz.
 
-// console.log(uniqueTags);
-// console.log(tagCount); // { javascript: 3, beginner: 1, react: 1, nodejs: 1, api: 1 }
+// 25. Sprawdź czy tablica temperatury zawiera wartość 25 przez includes.
+//     Wypisz true/false.
 
-// ============================================================
-// JS-019–026 — ZADANIE 17: koszyk zakupowy
-// ============================================================
+// 26. Znajdź pierwszą temperaturę większą niż 20 w tablicy temperatury
+//     przez find. Wypisz.
 
-// Masz koszyk: { productId, quantity }
-// Napisz calculateCart(cart, products) zwracające:
-// { items: [{name, price, quantity, lineTotal}], subtotal, tax, total }
+// 27. Znajdź indeks pierwszej temperatury mniejszej lub równej 5
+//     w tablicy temperatury przez findIndex. Wypisz.
 
-const cart = [
-  { productId: 1, quantity: 1 },
-  { productId: 5, quantity: 2 },
-  { productId: 4, quantity: 1 },
-];
+// 28. Spróbuj znaleźć w tablicy zwierzeta zwierzę zaczynające się na "z"
+//     przez find. Wypisz wynik (powinien być undefined).
 
-function calculateCart(cartItems, catalog) {
-  // TODO: find product, map, reduce
-}
+// --- JS-020: filter() ---
 
-// console.log(calculateCart(cart, products));
+// 29. Z tablicy temperatury wyfiltruj wartości powyżej 18 stopni. Wypisz.
 
-// ============================================================
-// JS-025/026 — ZADANIE 18: dekonstrukcja w praktyce
-// ============================================================
+// 30. Z tablicy pracownicy wyfiltruj osoby zatrudnione
+//     (zatrudniona === true). Wypisz same imiona.
 
-// a) Napisz funkcję getMinMax(arr) używając dekonstrukcji i spread
-function getMinMax(arr) {
-  // TODO: const sorted = [...arr].sort((a,b)=>a-b); const [min,...rest] = sorted;
-}
-// console.log(getMinMax([3, 1, 4, 1, 5, 9, 2, 6])); // { min: 1, max: 9 }
+// 31. Z tablicy pracownicy wyfiltruj osoby pełnoletnie (wiek >= 18).
+//     Wypisz imiona.
 
-// b) Napisz funkcję swapAll(pairs) — zamień elementy w każdej parze
-function swapAll(pairs) {
-  // TODO: pairs.map(([a, b]) => [b, a])
-}
-// console.log(swapAll([[1, 2], [3, 4], [5, 6]])); // [[2,1],[4,3],[6,5]]
+// 32. Z tablicy pracownicy wyfiltruj osoby z działu "IT". Wypisz.
 
-// c) Napisz funkcję zip(arr1, arr2) — spleć dwie tablice w tablicę par
-function zip(arr1, arr2) {
-  // TODO: arr1.map((item, i) => [item, arr2[i]])
-}
-// console.log(zip(["a","b","c"], [1,2,3])); // [["a",1],["b",2],["c",3]]
+// 33. Z tablicy zwierzeta wyfiltruj nazwy dłuższe niż 4 znaki. Wypisz.
+
+// --- JS-021: map() ---
+
+// 34. Z tablicy temperatury utwórz nową tablicę z wartościami przeliczonymi
+//     na Fahrenheit (°F = °C * 9/5 + 32). Wypisz.
+
+// 35. Z tablicy pracownicy utwórz tablicę samych imion przez map. Wypisz.
+
+// 36. Z tablicy pracownicy utwórz tablicę stringów w formacie "Marta - IT".
+//     Wypisz.
+
+// 37. Z tablicy zwierzeta utwórz tablicę z długościami nazw (length każdego
+//     stringa). Wypisz.
+
+// 38. Z tablicy temperatury utwórz tablicę obiektów { stopnie, czyCieplo },
+//     gdzie czyCieplo to true dla temperatury >= 20. Wypisz.
+
+// --- JS-022: forEach() ---
+
+// 39. Wypisz każdy element tablicy zwierzeta razem z jego indeksem,
+//     w formacie "0: kot" (użyj forEach).
+
+// 40. Wypisz każdego pracownika z tablicy pracownicy w formacie
+//     "Marta (34 lata)" używając forEach.
+
+// 41. Użyj forEach żeby zsumować wszystkie wartości tablicy temperatury
+//     w osobnej zmiennej (bez reduce) i wypisać wynik.
+
+// --- JS-023: sort() — szczegółowo ---
+
+// 42. Weź tablicę [40, 5, 100, 25, 1]. Wywołaj domyślny sort() bez
+//     comparatora i wypisz wynik — zauważ że jest błędny dla liczb.
+
+// 43. Posortuj KOPIĘ tablicy [40, 5, 100, 25, 1] rosnąco przez comparator
+//     (a, b) => a - b. Wypisz.
+
+// 44. Posortuj KOPIĘ tej samej tablicy malejąco przez comparator
+//     (a, b) => b - a. Wypisz.
+
+// 45. Posortuj KOPIĘ tablicy pracownicy po wieku rosnąco (comparator
+//     na polu wiek). Wypisz imiona i wieki.
+
+// 46. Posortuj KOPIĘ tablicy pracownicy po imieniu alfabetycznie przez
+//     localeCompare. Wypisz same imiona.
+
+// --- JS-024: flat() i flatMap() ---
+
+// 47. Spłaszcz tablicę [[1, 2], [3, 4], [5]] o jeden poziom przez flat().
+//     Wypisz.
+
+// 48. Spłaszcz głęboko zagnieżdżoną tablicę [1, [2, [3, [4, [5]]]]] w całości
+//     przez flat(Infinity). Wypisz.
+
+// 49. Masz tablicę zdań ["Kot śpi", "Pies biega po parku"]. Użyj flatMap
+//     żeby dostać jedną płaską tablicę wszystkich słów.
+
+// 50. Masz tablicę zamówień:
+//     [{ id: 1, produkty: ["chleb", "mleko"] }, { id: 2, produkty: ["masło"] }]
+//     Użyj flatMap żeby dostać płaską tablicę wszystkich produktów.
+
+// --- JS-025: dekonstrukcja tablicy ---
+
+// 51. Zdestrukturyzuj tablicę [5, 10, 15, 20, 25]: pobierz pierwszy element,
+//     drugi element, i resztę jako tablicę rest.
+
+// 52. Zdestrukturyzuj tablicę ["a", "b", "c", "d"] pomijając pierwsze dwa
+//     elementy — pobierz od razu trzeci element.
+
+// 53. Zdestrukturyzuj tablicę [1, 2] do trzech zmiennych z wartościami
+//     domyślnymi: trzecia powinna dostać wartość domyślną 0.
+
+// 54. Zamień wartości dwóch zmiennych let p = "lewo" i q = "prawo" miejscami
+//     przez destrukturyzację tablicową: [p, q] = [q, p].
+
+// 55. Napisz funkcję minMax(arr) zwracającą tablicę dwuelementową
+//     [min, max] dla podanej tablicy liczb. Zdestrukturyzuj wynik wywołania
+//     minMax([4, 1, 9, 2, 7]) na dwie zmienne min i max.
+
+// 56. Zdestrukturyzuj tablicę zwróconą przez "abc".split("") na trzy osobne
+//     zmienne (litery).
+
+// --- JS-026: spread operator na tablicach ---
+
+// 57. Połącz tablice ["pon", "wt", "śr"] i ["czw", "pt"] przez spread
+//     w jedną tablicę. Wypisz.
+
+// 58. Wstaw dodatkowy element pomiędzy dwiema połączonymi przez spread
+//     tablicami: [0, ...tab1, 99, ...tab2, 100]. Wypisz.
+
+// 59. Skopiuj tablicę temperatury przez spread do nowej zmiennej. Dodaj
+//     element do kopii przez push. Sprawdź że oryginał się nie zmienił.
+
+// 60. Użyj spread żeby przekazać elementy tablicy [3, 7, 2, 9] jako osobne
+//     argumenty do Math.max(). Wypisz wynik.
+
+// 61. Zamień string "kurs" na tablicę pojedynczych znaków przez spread
+//     ([..."kurs"]). Wypisz.
+
+// 62. Masz Set z duplikatami: new Set([1, 1, 2, 3, 3, 3, 4]). Zamień go
+//     na tablicę unikalnych wartości przez spread. Wypisz.
