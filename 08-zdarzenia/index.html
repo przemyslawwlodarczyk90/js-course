@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>08 — Zdarzenia</title>
+  <style>
+    body { font-family: sans-serif; padding: 2rem; }
+    button { padding: 0.5rem 1rem; margin: 0.25rem; cursor: pointer; }
+    #click-area { width: 300px; height: 150px; background: #e3f2fd; border: 2px solid #1565c0;
+                  border-radius: 8px; display: flex; align-items: center; justify-content: center;
+                  cursor: pointer; user-select: none; }
+    #coords { font-family: monospace; margin-top: 0.5rem; }
+    .parent { background: #fff3e0; padding: 1rem; border: 2px solid #ef6c00; margin: 1rem 0; }
+    .child { background: #e8f5e9; padding: 0.5rem; border: 1px solid #2e7d32; margin: 0.5rem; }
+    #event-log { background: #f5f5f5; padding: 1rem; height: 120px; overflow-y: auto;
+                  font-family: monospace; font-size: 0.85rem; border: 1px solid #ccc; }
+    form { margin: 1rem 0; }
+    input[type="text"], input[type="password"], select {
+      padding: 0.5rem; margin: 0.25rem; border: 1px solid #ccc; border-radius: 4px; }
+    input.error { border-color: #f44336; }
+    .error-msg { color: #f44336; font-size: 0.85rem; margin-left: 0.5rem; }
+    #todo-list { list-style: none; padding: 0; }
+    #todo-list li { display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0;
+                     border-bottom: 1px solid #eee; }
+    #todo-list button { font-size: 0.8rem; padding: 0.2rem 0.5rem; }
+  </style>
+</head>
+<body>
+  <h1>Zdarzenia JS</h1>
+
+  <!-- Zdarzenia myszy -->
+  <section>
+    <h2>Zdarzenia myszy</h2>
+    <div id="click-area">Kliknij mnie!</div>
+    <div id="coords">x: -, y: -</div>
+    <button id="btn-single">Kliknij (click)</button>
+    <button id="btn-double">Kliknij dwukrotnie (dblclick)</button>
+    <button id="btn-right">Prawy przycisk (contextmenu)</button>
+  </section>
+
+  <!-- Propagacja -->
+  <section>
+    <h2>Propagacja (bubbling)</h2>
+    <div class="parent" id="parent-div">
+      PARENT
+      <div class="child" id="child-div">
+        CHILD
+        <button id="inner-btn">BUTTON</button>
+      </div>
+    </div>
+    <div id="event-log"></div>
+    <button id="btn-stop-propagation">Toggle stopPropagation</button>
+  </section>
+
+  <!-- Klawiatura -->
+  <section>
+    <h2>Klawiatura</h2>
+    <input type="text" id="key-input" placeholder="Wpisz coś...">
+    <span id="key-display">-</span>
+  </section>
+
+  <!-- Formularz -->
+  <section>
+    <h2>Formularz z walidacją</h2>
+    <form id="register-form">
+      <div>
+        <input type="text" id="username" placeholder="Nazwa użytkownika" autocomplete="off">
+        <span class="error-msg" id="username-error"></span>
+      </div>
+      <div>
+        <input type="text" id="email" placeholder="Email" autocomplete="off">
+        <span class="error-msg" id="email-error"></span>
+      </div>
+      <div>
+        <input type="password" id="password" placeholder="Hasło">
+        <span class="error-msg" id="password-error"></span>
+      </div>
+      <div>
+        <select id="role">
+          <option value="">-- wybierz rolę --</option>
+          <option value="user">Użytkownik</option>
+          <option value="admin">Administrator</option>
+          <option value="moderator">Moderator</option>
+        </select>
+      </div>
+      <button type="submit">Zarejestruj</button>
+    </form>
+    <div id="form-result"></div>
+  </section>
+
+  <!-- Event delegation — lista TODO -->
+  <section>
+    <h2>Event delegation — lista TODO</h2>
+    <div>
+      <input type="text" id="todo-input" placeholder="Nowe zadanie">
+      <button id="todo-add">Dodaj</button>
+    </div>
+    <ul id="todo-list">
+      <li data-id="1"><input type="checkbox"> Nauczyć się DOM <button data-action="delete">✕</button></li>
+      <li data-id="2"><input type="checkbox"> Ćwiczyć codziennie <button data-action="delete">✕</button></li>
+    </ul>
+  </section>
+
+  <script src="cwiczenia.js"></script>
+</body>
+</html>

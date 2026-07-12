@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>07 — DOM</title>
+  <style>
+    body { font-family: sans-serif; padding: 2rem; }
+    .card { border: 1px solid #ccc; border-radius: 8px; padding: 1rem; margin: 0.5rem 0; }
+    .card.active { background: #e8f5e9; border-color: #4caf50; }
+    .card.error { background: #ffebee; border-color: #f44336; }
+    .hidden { display: none; }
+    .highlight { background: yellow; }
+    #notification { position: fixed; top: 1rem; right: 1rem; padding: 0.75rem 1.5rem;
+                    border-radius: 4px; background: #333; color: #fff; display: none; }
+  </style>
+</head>
+<body>
+  <h1 id="title">Lista zadań</h1>
+  <p id="subtitle">Ćwiczenia DOM</p>
+
+  <div id="controls">
+    <button id="btn-add">Dodaj</button>
+    <button id="btn-clear">Wyczyść</button>
+    <input id="search-input" type="text" placeholder="Szukaj...">
+  </div>
+
+  <ul id="task-list">
+    <li class="task" data-id="1" data-priority="high">Nauczyć się DOM</li>
+    <li class="task" data-id="2" data-priority="medium">Ćwiczyć każdy dzień</li>
+    <li class="task" data-id="3" data-priority="low">Zrobić projekt</li>
+  </ul>
+
+  <div id="stats">
+    <span id="task-count">3</span> zadań
+  </div>
+
+  <div id="product-container">
+    <div class="card" id="product-1" data-category="electronics" data-price="3499">
+      <h3 class="product-name">Laptop Pro</h3>
+      <p class="product-price">3 499 zł</p>
+    </div>
+    <div class="card" id="product-2" data-category="clothing" data-price="49">
+      <h3 class="product-name">Koszulka</h3>
+      <p class="product-price">49 zł</p>
+    </div>
+    <div class="card" id="product-3" data-category="electronics" data-price="599">
+      <h3 class="product-name">Słuchawki</h3>
+      <p class="product-price">599 zł</p>
+    </div>
+  </div>
+
+  <div id="notification"></div>
+
+  <script src="cwiczenia.js"></script>
+</body>
+</html>

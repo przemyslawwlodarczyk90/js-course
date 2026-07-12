@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>10 — Środowisko przeglądarkowe</title>
+  <style>
+    body { font-family: sans-serif; padding: 2rem; }
+    button { padding: 0.5rem 1rem; margin: 0.25rem; cursor: pointer; }
+    #storage-display { background: #f5f5f5; padding: 1rem; border-radius: 4px;
+                        font-family: monospace; margin: 0.5rem 0; min-height: 3rem; }
+    input { padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px; }
+    .tab-btn { background: #eee; border: none; }
+    .tab-btn.active { background: #1565c0; color: white; }
+    #tab-content { padding: 1rem; border: 1px solid #ccc; border-radius: 0 4px 4px 4px; }
+    #history-display { background: #f5f5f5; padding: 1rem; margin: 0.5rem 0; border-radius: 4px; }
+    .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+    .info-item { background: #f5f5f5; padding: 0.5rem; border-radius: 4px; font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <h1>Środowisko przeglądarkowe</h1>
+
+  <!-- window info -->
+  <section>
+    <h2>window — informacje</h2>
+    <div class="info-grid" id="window-info">
+      <div class="info-item" id="info-size">Rozmiar: -</div>
+      <div class="info-item" id="info-scroll">Scroll: -</div>
+      <div class="info-item" id="info-origin">Origin: -</div>
+      <div class="info-item" id="info-lang">Język: -</div>
+    </div>
+  </section>
+
+  <!-- localStorage -->
+  <section>
+    <h2>localStorage / sessionStorage</h2>
+    <div>
+      <input type="text" id="storage-key" placeholder="klucz" style="width:100px">
+      <input type="text" id="storage-value" placeholder="wartość" style="width:150px">
+      <button id="btn-local-set">localStorage.set</button>
+      <button id="btn-session-set">sessionStorage.set</button>
+    </div>
+    <div>
+      <button id="btn-local-get">Odczytaj localStorage</button>
+      <button id="btn-local-clear">Wyczyść localStorage</button>
+    </div>
+    <div id="storage-display">Brak danych</div>
+  </section>
+
+  <!-- location -->
+  <section>
+    <h2>window.location</h2>
+    <button id="btn-show-location">Pokaż location</button>
+    <button id="btn-add-param">Dodaj ?tab=home do URL (bez reload)</button>
+    <div id="location-display" style="font-family:monospace; margin-top:0.5rem;"></div>
+  </section>
+
+  <!-- history -->
+  <section>
+    <h2>History API — tabs bez przeładowania</h2>
+    <div>
+      <button class="tab-btn active" data-tab="home">Home</button>
+      <button class="tab-btn" data-tab="products">Produkty</button>
+      <button class="tab-btn" data-tab="about">O nas</button>
+    </div>
+    <div id="tab-content">Zawartość: Home</div>
+    <div id="history-display">URL: -</div>
+  </section>
+
+  <script src="cwiczenia.js"></script>
+</body>
+</html>
